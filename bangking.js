@@ -1,14 +1,7 @@
-// deposit section
-const depositButton = document.getElementById('deposit-button');
-const singleDeposit = document.getElementById('single-deposit')
-
 // total balance find
 const depositBalance = document.getElementById('total-balance')
 
-// withdraw section
-const withdrawButton = document.getElementById('withdraw-button');
-const singleWithdraw = document.getElementById('single-withdraw')
-
+// InputField
 const getInputValue = (inputId)=>{
     const inputField = document.getElementById(inputId)
     const currentAmount = inputField.value;
@@ -16,10 +9,18 @@ const getInputValue = (inputId)=>{
     return currentAmount;
 }
 
+// innerText
+const getInputInnerText = (innerTextId)=>{
+    const singleAmount = document.getElementById(innerTextId)
+    return singleAmount;
+}
+
 // deposit and total balance
-depositButton.addEventListener('click', ()=>{
+document.getElementById('deposit-button').addEventListener('click', ()=>{
     const currentAmount = getInputValue('deposit-input');
-    const previousDeposit = singleDeposit.innerText;
+    const singleAmount = getInputInnerText('single-deposit')
+
+    const previousDeposit = singleAmount.innerText;
     const totalDeposit = parseFloat(previousDeposit) + parseFloat(currentAmount)
     
     if( (isNaN(currentAmount)) || currentAmount.trim() === '' || currentAmount < 0 ){
@@ -27,7 +28,7 @@ depositButton.addEventListener('click', ()=>{
         return;
     }
 
-    singleDeposit.innerText = totalDeposit;
+    singleAmount.innerText = totalDeposit;
 
     // total balance
     const previousBalance = depositBalance.innerText;
@@ -37,9 +38,11 @@ depositButton.addEventListener('click', ()=>{
 })
 
 // withdraw
-withdrawButton.addEventListener('click', ()=>{
+document.getElementById('withdraw-button').addEventListener('click', ()=>{
     const currentAmount = getInputValue('withdraw-input');
-    const previousWithdraw = singleWithdraw.innerText;
+    const singleAmount = getInputInnerText('single-withdraw')
+    const previousWithdraw = singleAmount.innerText;
+    const totalWithdraw = parseFloat(previousWithdraw) + parseFloat(currentAmount)
     
     if( (isNaN(currentAmount)) || currentAmount.trim() === '' || currentAmount < 0 ){
         alert('something is worng went')
@@ -53,8 +56,7 @@ withdrawButton.addEventListener('click', ()=>{
         alert('something is worng went')
         return;
     }else{
-        const totalWithdraw = parseFloat(previousWithdraw) + parseFloat(currentAmount)
-        singleWithdraw.innerText = totalWithdraw;
+        singleAmount.innerText = totalWithdraw;
     }
 
     depositBalance.innerText = totalBalance;
