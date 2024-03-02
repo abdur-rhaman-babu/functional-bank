@@ -14,11 +14,11 @@
         <section class="grid grid-cols-3 w-3/4 mx-auto mt-8 gap-4 text-white">
             <div class="bg-sky-300 p-8 rounded">
                 <h3 class="text-3xl">Deposit</h3>
-                <h2 class="text-4xl">$<span id ="single-deposit">00</span></h2>
+                <h2 class="text-4xl">$<span id ="previous-deposit">00</span></h2>
             </div>
             <div class="bg-green-300 p-8 rounded">
                 <h3 class="text-3xl">Withdraw</h3>
-                <h2 class="text-4xl">$<span id ="single-withdraw">00</span></h2>
+                <h2 class="text-4xl">$<span id ="previous-withdraw">00</span></h2>
             </div>
             <div class="bg-yellow-300 p-8 rounded">
                 <h3 class="text-3xl">Balance</h3>
@@ -29,12 +29,12 @@
         <section class="grid grid-cols-2 w-3/4 mt-4 text-white mx-auto font-semibold gap-4">
             <div class="bg-red-100 p-16 rounded">
                 <h3 class="text-2xl mb-2 text-black">Please Deposit</h3>
-                <input id="deposit-input" class="block rounded px-2 py-1 text-black" type="text" placeholder="$Deposit your amount">
+                <input id="current-deposit" class="block rounded px-2 py-1 text-black" type="text" placeholder="$Deposit your amount">
                 <button id="deposit-button" class="bg-yellow-500 rounded px-2 py-1 mt-4">Deposit</button>
             </div>
             <div class="bg-purple-100 p-16 rounded">
                 <h3 class="text-2xl mb-2 text-black">Please Withdraw</h3>
-                <input id="withdraw-input" class="block rounded px-2 py-1 text-black" type="text" placeholder="$Withdraw your amount">
+                <input id="current-withdraw" class="block rounded px-2 py-1 text-black" type="text" placeholder="$Withdraw your amount">
                 <button id="withdraw-button" class="bg-yellow-500 rounded px-2 py-1 mt-4">Withdraw</button>
             </div>
             
