@@ -7,24 +7,22 @@ const depositBalance = document.getElementById('total-balance')
 
 // withdraw section
 const withdrawButton = document.getElementById('withdraw-button');
-const withdrawInput = document.getElementById('withdraw-input')
 const singleWithdraw = document.getElementById('single-withdraw')
 
 const getInputValue = (inputId)=>{
-    const depositInput = document.getElementById(inputId)
-    const currentDeposit = depositInput.value;
-    depositInput.value = ''
-    return currentDeposit;
+    const inputField = document.getElementById(inputId)
+    const currentAmount = inputField.value;
+    inputField.value = ''
+    return currentAmount;
 }
 
 // deposit and total balance
 depositButton.addEventListener('click', ()=>{
-    const currentDeposit = getInputValue('deposit-input');
-    
+    const currentAmount = getInputValue('deposit-input');
     const previousDeposit = singleDeposit.innerText;
-    const totalDeposit = parseFloat(previousDeposit) + parseFloat(currentDeposit)
+    const totalDeposit = parseFloat(previousDeposit) + parseFloat(currentAmount)
     
-    if( (isNaN(currentDeposit)) || currentDeposit.trim() === '' || currentDeposit < 0 ){
+    if( (isNaN(currentAmount)) || currentAmount.trim() === '' || currentAmount < 0 ){
         alert('Please give valid input')
         return;
     }
@@ -33,33 +31,32 @@ depositButton.addEventListener('click', ()=>{
 
     // total balance
     const previousBalance = depositBalance.innerText;
-    const totalBalance = parseFloat(previousBalance) + parseFloat(currentDeposit)
+    const totalBalance = parseFloat(previousBalance) + parseFloat(currentAmount)
     depositBalance.innerText = totalBalance;
 
 })
 
 // withdraw
 withdrawButton.addEventListener('click', ()=>{
+    const currentAmount = getInputValue('withdraw-input');
     const previousWithdraw = singleWithdraw.innerText;
-    const currentWithdraw = withdrawInput.value;
     
-    if( (isNaN(currentWithdraw)) || currentWithdraw.trim() === '' || currentWithdraw < 0 ){
+    if( (isNaN(currentAmount)) || currentAmount.trim() === '' || currentAmount < 0 ){
         alert('something is worng went')
         return;
     }
     
     const previousBalance = depositBalance.innerText;
-    const totalBalance = parseFloat(previousBalance) - parseFloat(currentWithdraw)
+    const totalBalance = parseFloat(previousBalance) - parseFloat(currentAmount)
 
     if( totalBalance < 0){
         alert('something is worng went')
         return;
     }else{
-        const totalWithdraw = parseFloat(previousWithdraw) + parseFloat(currentWithdraw)
+        const totalWithdraw = parseFloat(previousWithdraw) + parseFloat(currentAmount)
         singleWithdraw.innerText = totalWithdraw;
     }
 
     depositBalance.innerText = totalBalance;
-    withdrawInput.value = ''
 })
 
