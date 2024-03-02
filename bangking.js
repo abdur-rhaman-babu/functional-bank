@@ -1,6 +1,5 @@
 // deposit section
 const depositButton = document.getElementById('deposit-button');
-const depositInput = document.getElementById('deposit-input')
 const singleDeposit = document.getElementById('single-deposit')
 
 // total balance find
@@ -11,26 +10,32 @@ const withdrawButton = document.getElementById('withdraw-button');
 const withdrawInput = document.getElementById('withdraw-input')
 const singleWithdraw = document.getElementById('single-withdraw')
 
+const getInputValue = (inputId)=>{
+    const depositInput = document.getElementById(inputId)
+    const currentDeposit = depositInput.value;
+    depositInput.value = ''
+    return currentDeposit;
+}
+
 // deposit and total balance
 depositButton.addEventListener('click', ()=>{
+    const currentDeposit = getInputValue('deposit-input');
+    
     const previousDeposit = singleDeposit.innerText;
-    const currentDeposit = depositInput.value;
     const totalDeposit = parseFloat(previousDeposit) + parseFloat(currentDeposit)
     
-    if( (isNaN(currentDeposit)) || currentDeposit.trim() === ''){
+    if( (isNaN(currentDeposit)) || currentDeposit.trim() === '' || currentDeposit < 0 ){
         alert('Please give valid input')
         return;
     }
 
     singleDeposit.innerText = totalDeposit;
 
-
     // total balance
     const previousBalance = depositBalance.innerText;
     const totalBalance = parseFloat(previousBalance) + parseFloat(currentDeposit)
     depositBalance.innerText = totalBalance;
 
-    depositInput.value = ''
 })
 
 // withdraw
@@ -38,8 +43,8 @@ withdrawButton.addEventListener('click', ()=>{
     const previousWithdraw = singleWithdraw.innerText;
     const currentWithdraw = withdrawInput.value;
     
-    if( (isNaN(currentWithdraw)) || currentWithdraw.trim() === ''){
-        alert('Please give valid input')
+    if( (isNaN(currentWithdraw)) || currentWithdraw.trim() === '' || currentWithdraw < 0 ){
+        alert('something is worng went')
         return;
     }
     
@@ -47,7 +52,7 @@ withdrawButton.addEventListener('click', ()=>{
     const totalBalance = parseFloat(previousBalance) - parseFloat(currentWithdraw)
 
     if( totalBalance < 0){
-        alert('Insufficient Balance')
+        alert('something is worng went')
         return;
     }else{
         const totalWithdraw = parseFloat(previousWithdraw) + parseFloat(currentWithdraw)
@@ -55,7 +60,6 @@ withdrawButton.addEventListener('click', ()=>{
     }
 
     depositBalance.innerText = totalBalance;
-
     withdrawInput.value = ''
 })
 
